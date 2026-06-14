@@ -126,8 +126,12 @@ Six real pages, each with its own URL:
 ## 6. Technical Architecture
 
 > **Stack:** Astro (static site) + Keystatic (free headless CMS) + Cloudflare Pages
-> (free hosting) + Cloudflare R2/Images for gallery media. Total recurring cost ≈ $0
-> (plus the existing domain).
+> (free hosting) + Cloudflare **R2** for gallery media. Confirmed runnable entirely on
+> Cloudflare's **free tier**. Total recurring cost ≈ $0 (plus the existing domain).
+>
+> Use **R2** (free tier: 10 GB storage, zero egress), **not** Cloudflare Images (paid,
+> ~$5/mo). Astro handles image optimization at build time, so the paid product isn't
+> needed.
 
 ### Why this stack
 - **Astro** — component-based authoring, builds to plain fast static HTML, first-class
@@ -138,7 +142,7 @@ Six real pages, each with its own URL:
   dashboard. Chosen over Sveltia/Decap/Pages CMS for its tight Astro integration and
   clean editing UI.
 - **Cloudflare Pages** — free static hosting with automatic builds on git push.
-- **Cloudflare R2 / Images** — gallery photos/videos live in object storage instead of
+- **Cloudflare R2** — gallery photos/videos live in object storage instead of
   bloating the git repo; the CMS references them. Generous free tier.
 
 ### Repo & content structure (indicative)

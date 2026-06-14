@@ -4,7 +4,7 @@
 
 **Goal:** Rebuild nateshadance.com as a modern, responsive, "Warm Heritage" themed static site with a free headless CMS, migrating the current live content.
 
-**Architecture:** Astro static site (six real pages) styled from a central design-token file. Events and gallery items are Astro content collections, edited through Keystatic (a free git-based CMS). Gallery media lives in Cloudflare R2/Images; the site deploys to Cloudflare Pages. Logic with real branching (event upcoming/past derivation, gallery filtering) is unit-tested with Vitest; pages are verified via `astro build` + `astro check` and dev-server review.
+**Architecture:** Astro static site (six real pages) styled from a central design-token file. Events and gallery items are Astro content collections, edited through Keystatic (a free git-based CMS). Gallery media lives in Cloudflare R2 (free tier); the site deploys to Cloudflare Pages (free tier). Logic with real branching (event upcoming/past derivation, gallery filtering) is unit-tested with Vitest; pages are verified via `astro build` + `astro check` and dev-server review.
 
 **Tech Stack:** Astro, TypeScript, Vitest, Keystatic, Cloudflare Pages + R2, Google Fonts (Marcellus, Cormorant Garamond, Inter).
 
@@ -1087,7 +1087,7 @@ export default config({
 });
 ```
 
-> **Image storage note (spec §6/§10):** Keystatic's local `image` field commits files into the repo. Start here for launch simplicity. The Cloudflare R2/Images migration (to keep the repo lean for a large photo archive) is Task 20.
+> **Image storage note (spec §6/§10):** Keystatic's local `image` field commits files into the repo. Start here for launch simplicity. The Cloudflare R2 migration (free tier — to keep the repo lean for a large photo archive) is Task 20. Use R2, not the paid Cloudflare Images product.
 
 - [ ] **Step 4: Verify the CMS runs locally**
 
@@ -1152,12 +1152,12 @@ Move `nateshadance.com` DNS to Cloudflare; add the custom domain in Pages; confi
 
 ---
 
-## Task 20 (follow-up): Move gallery media to Cloudflare R2/Images
+## Task 20 (follow-up): Move gallery media to Cloudflare R2 (free tier)
 
 **Only once the archive grows large enough that repo size matters (spec §6/§10.1).**
 
 - [ ] **Step 1:** Create an R2 bucket (or enable Cloudflare Images); upload existing gallery media.
-- [ ] **Step 2:** Change the Keystatic `image` field `publicPath`/storage to reference the R2/Images base URL instead of `public/gallery`.
+- [ ] **Step 2:** Change the Keystatic `image` field `publicPath`/storage to reference the R2 public base URL instead of `public/gallery`.
 - [ ] **Step 3:** Verify uploads from the CMS land in R2 and render on the live gallery; confirm repo no longer grows with new photos.
 - [ ] **Step 4: Commit.**
 
