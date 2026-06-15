@@ -1,17 +1,80 @@
 ---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Ornament from "../components/Ornament.astro";
+import { splitEvents } from "../lib/events";
 
+const allEvents = await getCollection("events");
+const events = allEvents.map((e) => ({ ...e.data, id: e.id }));
+const { upcoming } = splitEvents(events);
+const nextEvent = upcoming[0];
+const gallery = await getCollection("gallery");
+const galleryPreview = gallery.slice(0, 4);
 ---
+<BaseLayout title="Home">
+  <section class="hero">
+    <div class="spark">✦</div>
+    <h1>Natesha School<br />of Bharatanatyam</h1>
+    <p class="sloka">"Where the hands go, the eyes follow; where the mind goes, feeling is born."</p>
+    <p class="label">Classical Indian Dance · San Diego · Est. 2001</p>
+    <div class="cta">
+      <a class="pill" href="/contact">Enroll your child</a>
+      <a class="ghost" href="/gallery">▶ Watch a performance</a>
+    </div>
+  </section>
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  <Ornament />
+
+  <section class="section split">
+    <div class="measure">
+      <p class="label">The School</p>
+      <h2>A traditional Guru-Shishya path, taught with patience and devotion.</h2>
+      <p>Founded in 2001 by Guru Suman Nayak to pass the pure Pandanallur tradition of Bharatanatyam to students of all ages — building grace, discipline, and a deep connection to Indian culture.</p>
+      <a href="/about">Read our story →</a>
+    </div>
+  </section>
+
+  {nextEvent && (
+    <section class="section">
+      <p class="label">Next up</p>
+      <article class="event-card">
+        <div class="event-date">
+          <span class="day">{new Date(nextEvent.date + "T00:00:00").toLocaleDateString("en-US", { day: "2-digit" })}</span>
+          <span class="label">{new Date(nextEvent.date + "T00:00:00").toLocaleDateString("en-US", { month: "short" })}</span>
+        </div>
+        <div class="rule"></div>
+        <div class="event-body">
+          <h3>{nextEvent.title}</h3>
+          {nextEvent.venue && <p class="venue">{nextEvent.venue}</p>}
+        </div>
+      </article>
+      <p><a href="/events">All events →</a></p>
+    </section>
+  )}
+
+  <section class="section">
+    <Ornament label="Moments" />
+    <div class="grid">
+      {galleryPreview.map((_g) => <div class="tile"></div>)}
+    </div>
+    <p style="text-align:center"><a href="/gallery">Explore the gallery →</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { text-align: center; padding: clamp(3rem,9vw,5rem) 1rem; background: radial-gradient(circle at 50% 0%, #3a1414, var(--bg-deep) 70%); }
+  .spark { color: var(--gold); font-size: 1.8rem; }
+  .hero h1 { font-size: clamp(2.2rem, 7vw, 3.2rem); color: var(--gold-display); margin: .6rem 0; }
+  .sloka { font-family: var(--font-serif); font-style: italic; color: #d9b27a; font-size: 1.3rem; max-width: 30ch; margin: .4rem auto; }
+  .cta { display: flex; gap: .8rem; justify-content: center; flex-wrap: wrap; margin-top: 1.4rem; }
+  .split h2 { color: var(--gold-light); }
+  .event-card { display: flex; gap: 1rem; align-items: center; padding: 1rem; border: 1px solid #3a2418; border-radius: 8px; background: var(--bg-deep); max-width: 60ch; }
+  .event-date { text-align: center; }
+  .day { font-family: var(--font-display); color: var(--gold); font-size: 1.6rem; display: block; line-height: 1; }
+  .rule { width: 1px; height: 40px; background: #3a2418; }
+  .event-body h3 { font-size: 1.05rem; color: var(--gold-light); margin: 0 0 .3rem; }
+  .venue { color: var(--text-caption); font-size: .8rem; margin: 0; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .7rem; }
+  .tile { aspect-ratio: 3/4; border-radius: 4px; background: linear-gradient(160deg, #caa05a, var(--maroon)); }
+  @media (max-width: 720px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
