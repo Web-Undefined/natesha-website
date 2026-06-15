@@ -1,0 +1,25 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="ftr">
+  <div class="name">Natesha School of Bharatanatyam</div>
+  <p class="contact">natesha.dance@gmail.com · (858) 349-8293<br />Poway &amp; Scripps Ranch, San Diego</p>
+  <p class="social">
+    <a href="https://facebook.com" rel="noopener" target="_blank">Facebook</a> ·
+    <a href="https://youtube.com" rel="noopener" target="_blank">YouTube</a>
+  </p>
+  <p class="credits">
+    Photos: Sundar Karthikeyan, Amarnath Puttur, Shankar Ramachandran ·
+    Videos: Barry Young, Ravi Soordelu · Logo: Pavan Kamath
+  </p>
+  <div class="orn">❋ ✦ ❋</div>
+  <p class="copy">© {year} Natesha School of Bharatanatyam</p>
+</footer>
+<style>
+  .ftr { background: var(--bg-footer); text-align: center; padding: 2.4rem 1rem; border-top: 1px solid var(--hairline); }
+  .name { font-family: var(--font-display); color: var(--gold-light); font-size: 1.2rem; margin-bottom: .6rem; }
+  .contact, .copy { color: var(--text-caption); font-size: .8rem; line-height: 1.8; }
+  .social { font-size: .85rem; margin: .6rem 0; }
+  .credits { color: var(--text-caption); font-size: .72rem; max-width: 60ch; margin: .8rem auto; }
+  .orn { color: var(--maroon); letter-spacing: .5em; margin: .6rem 0; }
+</style>
