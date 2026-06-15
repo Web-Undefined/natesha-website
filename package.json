@@ -10,10 +10,12 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate-types": "wrangler types"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
+    "@astrojs/cloudflare": "^13.7.0",
     "@astrojs/react": "^5.0.7",
     "@astrojs/sitemap": "^3.7.3",
     "@keystatic/astro": "^5.1.0",
@@ -23,9 +25,13 @@
     "astro": "^6.4.4",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "typescript": "^6.0.3"
+    "typescript": "^6.0.3",
+    "wrangler": "^4.100.0"
   },
   "devDependencies": {
     "vitest": "^4.1.8"
+  },
+  "overrides": {
+    "vite": "^7"
   }
 }
