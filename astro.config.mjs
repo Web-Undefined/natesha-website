@@ -9,4 +9,7 @@ export default defineConfig({
   site: "https://www.nateshadance.com",
   integrations: [react(), keystatic(), sitemap()],
   adapter: cloudflare(),
+  vite: {
+    optimizeDeps: { exclude: ["@keystatic/astro"] },
+  },
 });
