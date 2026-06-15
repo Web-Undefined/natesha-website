@@ -1,0 +1,28 @@
+:root {
+  /* backgrounds */
+  --bg-deep: #160a0a;
+  --bg-panel: #1c0d0d;
+  --bg-footer: #0c0606;
+  /* maroon brand */
+  --maroon: #7a1f1f;
+  --maroon-dark: #4a1212;
+  --maroon-bright: #8c1c13;
+  /* gold */
+  --gold: #e0a82e;
+  --gold-soft: #c9963f;
+  --gold-light: #f3d27a;
+  --gold-display: #f6e4b0;
+  /* text */
+  --text-body: #cdbb9c;
+  --text-warm: #e6cfa6;
+  --text-muted: #caa66a;
+  --text-caption: #a8906a;
+  --hairline: #3a1c1c;
+  /* type */
+  --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Inter", "Segoe UI", system-ui, sans-serif;
+  /* spacing rhythm */
+  --section-pad: clamp(2.5rem, 6vw, 4.5rem);
+  --measure: 65ch;
+}
