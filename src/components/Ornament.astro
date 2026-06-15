@@ -1,0 +1,14 @@
+---
+interface Props { label?: string; }
+const { label } = Astro.props;
+---
+<div class="orn">
+  <span></span>
+  {label ? <em>{label}</em> : "❋"}
+  <span></span>
+</div>
+<style>
+  .orn { display: flex; align-items: center; justify-content: center; gap: .8rem; color: var(--gold); padding: 1.4rem 0; }
+  .orn em { font-family: var(--font-serif); font-style: italic; color: var(--gold-light); font-size: 1.1rem; }
+  .orn span { height: 1px; width: 60px; background: linear-gradient(90deg, transparent, var(--maroon), transparent); }
+</style>
