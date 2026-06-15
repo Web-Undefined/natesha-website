@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const links = [
+  { text: "Indian Fine Arts Academy of San Diego (IFAASD)", url: "http://www.indianfinearts.org" },
+  { text: "SRUTI — India's premier magazine for performing arts", url: "http://www.sruti.com" },
+  { text: "NARTHAKI — online news channel for Indian dance", url: "http://www.narthaki.com" },
+];
+---
+<BaseLayout title="Resources">
+  <section class="section measure" style="margin:0 auto">
+    <h2>Resources</h2>
+    <ol>
+      {links.map((l) => <li><a href={l.url} target="_blank" rel="noopener">{l.text}</a></li>)}
+    </ol>
+  </section>
+</BaseLayout>

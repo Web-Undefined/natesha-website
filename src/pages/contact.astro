@@ -1,0 +1,15 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+const phone = "(858) 349-8293";
+const email = "natesha.dance@gmail.com";
+const locations = "Poway & Scripps Ranch";
+const formEmbed = "https://docs.google.com/forms/d/e/1FAIpQLScQrB4j4Lmin7nyZBubHhfkCIU7mRjHCIAsHSzlH6hvUkgflw/viewform?embedded=true";
+---
+<BaseLayout title="Contact">
+  <section class="section" style="text-align:center">
+    <h2>Contact Natesha School</h2>
+    <p>Cell: {phone} · Email: <a href={`mailto:${email}`}>{email}</a></p>
+    <p class="label">Conducting classes in {locations}</p>
+    <iframe src={formEmbed} width="100%" height="900" style="max-width:500px;border:0;margin:1.5rem auto;display:block" title="Contact form" loading="lazy"></iframe>
+  </section>
+</BaseLayout>
