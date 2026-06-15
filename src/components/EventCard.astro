@@ -1,0 +1,88 @@
+---
+interface Props {
+  event: {
+    title: string;
+    date: string;
+    venue?: string;
+    link?: string;
+  };
+}
+
+const { event } = Astro.props;
+const d = new Date(event.date + "T00:00:00");
+const day = d.toLocaleDateString("en-US", { day: "2-digit" });
+const mon = d.toLocaleDateString("en-US", { month: "short" });
+---
+
+<article class="card">
+  <div class="date">
+    <span class="day">{day}</span>
+    <span class="label">{mon}</span>
+  </div>
+  <div class="rule"></div>
+  <div class="body">
+    <h3>{event.title}</h3>
+    {event.venue && <p class="venue">{event.venue}</p>}
+    {event.link && <a href={event.link} target="_blank" rel="noopener">More info →</a>}
+  </div>
+</article>
+
+<style>
+  .card {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid #3a2418;
+    border-radius: 8px;
+    background: var(--bg-deep);
+  }
+
+  .date {
+    text-align: center;
+  }
+
+  .day {
+    font-family: var(--font-display);
+    color: var(--gold);
+    font-size: 1.6rem;
+    display: block;
+    line-height: 1;
+  }
+
+  .label {
+    color: var(--gold-light);
+    font-size: 0.75rem;
+    display: block;
+    margin-top: 0.25rem;
+  }
+
+  .rule {
+    width: 1px;
+    height: 40px;
+    background: #3a2418;
+  }
+
+  .body h3 {
+    font-size: 1.05rem;
+    color: var(--gold-light);
+    margin: 0 0 0.3rem;
+  }
+
+  .venue {
+    color: var(--text-caption);
+    font-size: 0.8rem;
+    margin: 0;
+  }
+
+  .body a {
+    color: var(--gold-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .body a:hover {
+    color: var(--gold);
+  }
+</style>
