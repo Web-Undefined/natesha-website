@@ -1,0 +1,13 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import GalleryGrid from "../components/GalleryGrid.astro";
+const allGallery = await getCollection("gallery");
+const items = allGallery.map((g) => g.data);
+---
+<BaseLayout title="Gallery" description="Photos and videos from Natesha School recitals, productions, and arangetrams.">
+  <section class="section">
+    <h2 style="text-align:center">From the stage</h2>
+    <GalleryGrid items={items} />
+  </section>
+</BaseLayout>
