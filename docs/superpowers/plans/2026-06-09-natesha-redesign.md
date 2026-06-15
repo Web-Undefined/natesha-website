@@ -1039,7 +1039,7 @@ export default defineConfig({
 import { config, fields, collection } from "@keystatic/core";
 
 export default config({
-  storage: { kind: "github", repo: "OWNER/natesha-redesign" }, // set real repo in Task 19
+  storage: { kind: "github", repo: "Web-Undefined/natesha-website" },
   ui: { brand: { name: "Natesha Website" } },
   collections: {
     events: collection({
@@ -1132,9 +1132,10 @@ Run: `npx astro add cloudflare --yes`
 
 - [ ] **Step 2: Push to GitHub**
 
-Create a GitHub repo, set `keystatic.config.ts` `repo` to the real `OWNER/name`, then:
+Repo already created at `Web-Undefined/natesha-website` (empty, no README). `keystatic.config.ts` already points at it. Wire the remote and push:
 ```bash
-git remote add origin https://github.com/OWNER/natesha-redesign.git
+git remote add origin https://github.com/Web-Undefined/natesha-website.git
+git branch -M main
 git push -u origin main
 ```
 
